@@ -1,0 +1,8 @@
+.popup__error {
+  display: block;
+  font-size: 12px;
+  line-height: 1.25;
+  min-height: calc(1.25 * 12px * 2);
+  font-weight: 400;
+  max-width: fit-content;
+}

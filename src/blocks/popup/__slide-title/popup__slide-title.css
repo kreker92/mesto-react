@@ -1,0 +1,12 @@
+.popup__slide-title {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.25;
+  padding-top: 10px;
+  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  max-width: 100%;
+}

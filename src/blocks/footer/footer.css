@@ -1,0 +1,30 @@
+.footer {
+  grid-area: footer;
+  margin: 0 auto;
+  max-width: 880px;
+  width: 100%;
+  text-align: left;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+  line-height: 1.22;
+}
+
+@media screen and (max-width: 890px) {
+  .footer {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footer {
+    padding-bottom: 36px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .footer {
+    font-size: 14px;
+
+  }
+}

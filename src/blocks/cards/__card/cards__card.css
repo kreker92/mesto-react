@@ -1,0 +1,9 @@
+.cards__card {
+  width: 282px;
+  min-height: 361.5px;
+  display: flex;
+  flex-flow: column;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}

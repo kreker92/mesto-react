@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ПР6 Зайцев</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
+    </header>
+    <main class="content">
+      <section class="profile" aria-label="Профиль">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="/" alt="">
+          <button class="profile__avatar-edit" aria-label="Редактировать"></button>
+        </div>
+        <div class="profile__info-wrapper">
+          <div class="profile__info">
+            <h1 class="profile__name"></h1>
+            <p class="profile__about"></p>
+          </div>
+          <button class="profile__edit" type="button" aria-label="Редактировать"></button>
+        </div>
+        <button class="profile__add" type="button" aria-label="Добавить">+</button>
+      </section>
+      <section class="cards" aria-label="Элементы">
+        <ul class="cards__list"></ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2023 Mesto Russia</p>
+    </footer>
+  </div>
+  <div class="popup popup-profile">
+    <div class="popup__container popup__container_theme_form">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form method="post" action="#" name="profile-info" class="popup__form" novalidate>
+        <input
+          type="text"
+          class="popup__input popup__input_type_profile-name"
+          name="name"
+          placeholder="Имя"
+          autocomplete="off"
+          value=""
+          required
+          id="profile-name"
+          minlength="2"
+          maxlength="40"
+        >
+        <span class="popup__error profile-name-error"></span>
+        <input
+          type="text"
+          class="popup__input popup__input_type_profile-about"
+          name="about"
+          placeholder="Профессия"
+          autocomplete="off"
+          value=""
+          required
+          id="profile-about"
+          minlength="2"
+          maxlength="200"
+        >
+        <span class="popup__error profile-about-error"></span>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+  <div class="popup popup-avatar-edit">
+    <div class="popup__container popup__container_theme_form">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form method="post" action="#" name="profile-avatar-edit" class="popup__form" novalidate>
+        <input
+          type="url"
+          class="popup__input popup__input_type_profile-avatar"
+          name="avatar"
+          autocomplete="off"
+          value=""
+          required
+          id="profile-avatar"
+        >
+        <span class="popup__error profile-avatar-error"></span>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+  <div class="popup popup-card">
+    <div class="popup__container popup__container_theme_form">
+      <h2 class="popup__title">Новое место</h2>
+      <form method="post" action="#" name="card-info" class="popup__form" novalidate>
+        <input
+          type="text"
+          class="popup__input popup__input_type_card-name"
+          name="name"
+          placeholder="Название"
+          autocomplete="off"
+          value=""
+          required
+          minlength="2"
+          maxlength="30"
+          id="card-name"
+        >
+        <span class="popup__error card-name-error"></span>
+        <input
+          type="url"
+          class="popup__input popup__input_type_card-image-url"
+          name="link"
+          placeholder="Ссылка на картинку"
+          autocomplete="off"
+          value=""
+          required
+          id="card-image-url"
+        >
+        <span class="popup__error card-image-url-error"></span>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+  <div class="popup popup_type_slide">
+    <div class="popup__container popup__container_theme_slide">
+      <div class="popup__slide-container">
+        <img src="#" alt="" class="popup__slide-image">
+        <p class="popup__slide-title"></p>
+      </div>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+  <div class="popup popup-confirm">
+    <div class="popup__container popup__container_theme_form">
+      <h2 class="popup__title popup__title_no-input-fields">Вы уверены?</h2>
+      <form method="post" action="#" name="card-info" class="popup__form" novalidate>
+        <button class="popup__button" type="submit">Да</button>
+      </form>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+  <template id="card">
+    <li class="cards__card">
+      <a class="cards__image-link" href="#">
+        <img src="#" alt="" class="cards__image">
+      </a>
+      <div class="cards__info">
+        <h2 class="cards__name"></h2>
+        <div class="cards__like-wrapper">
+          <button class="cards__like" type="button" aria-label="Лайк"></button>
+          <p class="cards__like-count"></p>
+        </div>
+      </div>
+      <button class="cards__trash" aria-label="Удалить"></button>
+    </li>
+  </template>
+</body>
+</html>

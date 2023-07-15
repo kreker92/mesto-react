@@ -1,0 +1,20 @@
+.content {
+  grid-area: content;
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 66px;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 890px) {
+  .content {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .content {
+    padding-bottom: 48px;
+  }
+}
