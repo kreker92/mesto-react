@@ -22,7 +22,10 @@ class Api {
     });
   }
 
-  setLike(urlPostfix, likeFetchParams) {
+  setLike(urlPostfix, isDelete) {
+    const likeFetchParams = {
+      method: isDelete ? 'DELETE' : 'PUT',
+    };
     return this._fetch(`${this._baseUrl}/${urlPostfix}`, likeFetchParams);
   }
 

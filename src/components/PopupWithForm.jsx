@@ -5,7 +5,8 @@ export default function PopupWithForm({
   name,
   onSubmit,
   children,
-  ...elseProps
+  submitBtnText = 'Сохранить',
+  ...restProps
 }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -17,7 +18,7 @@ export default function PopupWithForm({
     <Popup
       name={name}
       theme='form'
-      {...elseProps}
+      {...restProps}
     >
       <h2 className="popup__title">{title}</h2>
       <form
@@ -27,6 +28,7 @@ export default function PopupWithForm({
         onSubmit={handleSubmit}
       >
         {children}
+        <button className="popup__button" type="submit">{submitBtnText}</button>
       </form>
     </Popup>
   );

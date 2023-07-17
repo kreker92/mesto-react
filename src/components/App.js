@@ -44,20 +44,19 @@ function App() {
   }, [userId])
 
   const handleCardLikeClick = (curCardId, isCurUserLike) => {
-    api.setLike(`cards/${curCardId}/likes`, {
-      method: isCurUserLike ? 'DELETE' : 'PUT',
-    }).then((res) => {
-      setCards(cards.map(card => {
-        if (card._id === curCardId) {
-          return res;
-        }
+    api.setLike(`cards/${curCardId}/likes`, isCurUserLike)
+      .then((res) => {
+        setCards(cards.map(card => {
+          if (card._id === curCardId) {
+            return res;
+          }
 
-        return card;
-      }));
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    });
+          return card;
+        }));
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
   };
 
   const [isOpenPopupAvaterEdit, setIsOpenPopupAvaterEdit] = useState(false);
@@ -65,7 +64,7 @@ function App() {
   const [isOpenPopupCard, setIsOpenPopupCard] = useState(false);
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const [isOpenImage, setIsOpenImage] = useState(false);
-  const [selectedCard, setSelectedCard] = useState();
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleEditAvatarClick = () => setIsOpenPopupAvaterEdit(true);
   const handleEditProfileClick = () => setIsOpenPopupProfile(true);
@@ -91,12 +90,16 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onRemoveCard={handleRemoveCard}
-          onShowImage={handleShowImage}
-          setSelectedCard={setSelectedCard}
-          userName={userName}
-          userDescription={userDescription}
-          userAvatar={userAvatar}
-          userId={userId}
+          onShowImage={(props) => {
+            setSelectedCard(props);
+            handleShowImage();
+          }}
+          currentUser={{
+            name: userName,
+            description: userDescription,
+            avatar: userAvatar,
+            id: userId,
+          }}
           cards={cards}
           handleCardLikeClick={handleCardLikeClick}
         />
@@ -114,7 +117,7 @@ function App() {
           name="name"
           placeholder="Имя"
           autoComplete="off"
-          value={userName}
+          defaultValue={userName}
           required
           id="profile-name"
           minLength="2"
@@ -127,14 +130,13 @@ function App() {
           name="about"
           placeholder="Профессия"
           autoComplete="off"
-          value={userDescription}
+          defaultValue={userDescription}
           required
           id="profile-about"
           minLength="2"
           maxLength="200"
         />
         <span className="popup__error profile-about-error"></span>
-        <button className="popup__button" type="submit">Сохранить</button>
       </PopupWithForm>
       <PopupWithForm
         title='Обновить аватар'
@@ -152,7 +154,6 @@ function App() {
           id="profile-avatar"
         />
         <span className="popup__error profile-avatar-error"></span>
-        <button className="popup__button" type="submit">Сохранить</button>
       </PopupWithForm>
       <PopupWithForm
         title='Новое место'
@@ -184,15 +185,13 @@ function App() {
           id="card-image-url"
         />
         <span className="popup__error card-image-url-error"></span>
-        <button className="popup__button" type="submit">Сохранить</button>
       </PopupWithForm>
       <PopupWithForm
         title='Вы уверены?'
         name='confirm'
         isOpen={isTrashConfirm}
-      >
-        <button className="popup__button" type="submit">Да</button>
-      </PopupWithForm>
+        submitBtnText='Да'
+      />
       <ImagePopup
         isOpen={isOpenImage}
         selectedCard={selectedCard}

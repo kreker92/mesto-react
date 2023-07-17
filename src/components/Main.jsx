@@ -4,9 +4,8 @@ export default function Main({
   onEditAvatar,
   onEditProfile,
   onAddPlace,
-  onShowImage,
   onRemoveCard,
-  setSelectedCard,
+  onShowImage,
   ...props
 }) {
   
@@ -15,7 +14,7 @@ export default function Main({
     <main className="content">
       <section className="profile" aria-label="Профиль">
         <div className="profile__avatar-container">
-          <img className="profile__avatar" src={props.userAvatar} alt={props.userName || ''} />
+          <img className="profile__avatar" src={props.currentUser.avatar} alt={props.currentUser.name || ''} />
           <button
             className="profile__avatar-edit"
             aria-label="Редактировать"
@@ -24,8 +23,8 @@ export default function Main({
         </div>
         <div className="profile__info-wrapper">
           <div className="profile__info">
-            <h1 className="profile__name">{props.userName}</h1>
-            <p className="profile__about">{props.userDescription}</p>
+            <h1 className="profile__name">{props.currentUser.name}</h1>
+            <p className="profile__about">{props.currentUser.description}</p>
           </div>
           <button
             className="profile__edit"
@@ -47,11 +46,10 @@ export default function Main({
             <Card
               key={card._id}
               {...card}
-              currentUserId={props.userId}
+              currentUserId={props.currentUser.id}
               onLikeClick={props.handleCardLikeClick}
               onImageClick={onShowImage}
               onRemoveCard={onRemoveCard}
-              setSelectedCard={setSelectedCard}
             />
           ))}
         </ul>

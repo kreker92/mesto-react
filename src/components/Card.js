@@ -2,18 +2,15 @@ export default function Card(props) {
   const { name, link, likes, _id, owner } = props;
   const { currentUserId } = props;
 
-  const doesCurUserLikesCard = () => {
-    return likes.some(user => user._id === currentUserId);
-  };
+  const isCurUserLikesCard = likes.some(user => user._id === currentUserId);
 
   const handleLikeClick = () => {
-    props.onLikeClick(_id, doesCurUserLikesCard());
+    props.onLikeClick(_id, isCurUserLikesCard);
   };
 
   const handleImageClick = (evt) => {
     evt.preventDefault();
-    props.setSelectedCard(props);
-    props.onImageClick();
+    props.onShowImage(props);
   };
   
   return (
@@ -30,7 +27,7 @@ export default function Card(props) {
         <div className="cards__like-wrapper">
           <button
             className={
-              `cards__like ${doesCurUserLikesCard() ? 'cards__like_active' : ''}`
+              `cards__like ${isCurUserLikesCard ? 'cards__like_active' : ''}`
             }
             type="button"
             aria-label="Лайк"

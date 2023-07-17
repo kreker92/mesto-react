@@ -2,18 +2,17 @@ import Popup from "./Popup";
 
 export default function ImagePopup({
   selectedCard,
-  ...elseProps
+  ...restProps
 }) {
-  console.log('elseProps', elseProps);
   return (
     <Popup
       name='slide'
       theme='slide'
-      {...elseProps}
+      {...restProps}
     >
       <div className="popup__slide-container">
-        <img src={selectedCard.link} alt={selectedCard.name} className="popup__slide-image" />
-        <p className="popup__slide-title">{selectedCard.name}</p>
+        <img src={selectedCard?.link} alt={selectedCard?.name} className="popup__slide-image" />
+        <p className="popup__slide-title">{selectedCard?.name}</p>
       </div>
     </Popup>
   );
