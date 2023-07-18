@@ -10,7 +10,7 @@ export default function Card(props) {
 
   const handleImageClick = (evt) => {
     evt.preventDefault();
-    props.onShowImage(props);
+    props.onImageClick(props);
   };
   
   return (
