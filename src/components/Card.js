@@ -1,8 +1,11 @@
+import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+
 export default function Card(props) {
   const { name, link, likes, _id, owner } = props;
-  const { currentUserId } = props;
+  const currentUser = React.useContext(CurrentUserContext);
 
-  const isCurUserLikesCard = likes.some(user => user._id === currentUserId);
+  const isCurUserLikesCard = likes.some(user => user._id === currentUser._id);
 
   const handleLikeClick = () => {
     props.onLikeClick(_id, isCurUserLikesCard);
@@ -11,6 +14,10 @@ export default function Card(props) {
   const handleImageClick = (evt) => {
     evt.preventDefault();
     props.onImageClick(props);
+  };
+
+  const handleTrashClick = () => {
+    props.onTrashClick(_id);
   };
   
   return (
@@ -36,8 +43,12 @@ export default function Card(props) {
           <p className="cards__like-count">{likes?.length || ''}</p>
         </div>
       </div>
-      {(currentUserId === owner?._id) && (
-        <button className="cards__trash" aria-label="Удалить" />
+      {(currentUser._id === owner?._id) && (
+        <button
+          className="cards__trash"
+          aria-label="Удалить"
+          onClick={handleTrashClick}
+          />
       )}
     </li>
   );

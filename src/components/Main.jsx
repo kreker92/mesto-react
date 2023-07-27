@@ -1,3 +1,6 @@
+import React from "react";
+// import { useEffect, useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from "./Card";
 
 export default function Main({
@@ -8,13 +11,13 @@ export default function Main({
   onShowImage,
   ...props
 }) {
-  
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
       <section className="profile" aria-label="Профиль">
         <div className="profile__avatar-container">
-          <img className="profile__avatar" src={props.currentUser.avatar} alt={props.currentUser.name || ''} />
+          <img className="profile__avatar" src={currentUser?.avatar} alt={currentUser?.name || ''} />
           <button
             className="profile__avatar-edit"
             aria-label="Редактировать"
@@ -23,8 +26,8 @@ export default function Main({
         </div>
         <div className="profile__info-wrapper">
           <div className="profile__info">
-            <h1 className="profile__name">{props.currentUser.name}</h1>
-            <p className="profile__about">{props.currentUser.description}</p>
+            <h1 className="profile__name">{currentUser?.name}</h1>
+            <p className="profile__about">{currentUser?.description}</p>
           </div>
           <button
             className="profile__edit"
@@ -46,8 +49,8 @@ export default function Main({
             <Card
               key={card._id}
               {...card}
-              currentUserId={props.currentUser.id}
-              onLikeClick={props.handleCardLikeClick}
+              onLikeClick={props.onCardLike}
+              onTrashClick={props.onCardDelete}
               onImageClick={onShowImage}
               onRemoveCard={onRemoveCard}
             />

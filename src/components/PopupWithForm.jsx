@@ -10,8 +10,7 @@ export default function PopupWithForm({
 }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(evt);
-    onSubmit && onSubmit(evt);
+    onSubmit(evt);
   };
 
   return (

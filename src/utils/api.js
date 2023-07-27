@@ -5,7 +5,7 @@ class Api {
     this.headers = options.headers;
   }
 
-  getInitialCards(urlPostfix) {
+  getCardList(urlPostfix) {
     return this._fetch(`${this._baseUrl}/${urlPostfix}`)
   }
 
