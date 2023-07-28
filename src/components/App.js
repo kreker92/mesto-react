@@ -29,7 +29,6 @@ function App() {
   useEffect(() => {
     (currentUser?._id !== undefined) && api.getCardList('cards')
       .then((initialCards) => {
-        initialCards.reverse();
         setCards(initialCards);
       })
       .catch((err) => {
@@ -66,6 +65,17 @@ function App() {
 
   const handleUpdateUser = (userData) => {
     api.setUserInfo(userData)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+  };
+
+  const handleUpdateUserAvatar = (avatarData) => {
+    api.setUserInfo(avatarData, '/users/me/avatar')
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -138,7 +148,7 @@ function App() {
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        onUpdateAvatar={handleUpdateUser}
+        onUpdateAvatar={handleUpdateUserAvatar}
       />
       <AddPlacePopup
         isOpen={isAddPlacePopupOpen}

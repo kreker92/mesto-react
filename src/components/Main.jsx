@@ -17,7 +17,11 @@ export default function Main({
     <main className="content">
       <section className="profile" aria-label="Профиль">
         <div className="profile__avatar-container">
-          <img className="profile__avatar" src={currentUser?.avatar} alt={currentUser?.name || ''} />
+          <img
+            className={`profile__avatar ${currentUser?.avatar ? 'profile__avatar_loaded' : ''}`}
+            src={currentUser?.avatar}
+            alt={currentUser?.name || ''}
+          />
           <button
             className="profile__avatar-edit"
             aria-label="Редактировать"
@@ -27,7 +31,7 @@ export default function Main({
         <div className="profile__info-wrapper">
           <div className="profile__info">
             <h1 className="profile__name">{currentUser?.name}</h1>
-            <p className="profile__about">{currentUser?.description}</p>
+            <p className="profile__about">{currentUser?.about}</p>
           </div>
           <button
             className="profile__edit"
