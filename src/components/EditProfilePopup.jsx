@@ -10,9 +10,11 @@ export default function EditProfilePopup(props) {
   const [about, setAbout] = useState('');
 
   React.useEffect(() => {
-    setName(currentUser.name);
-    setAbout(currentUser.about);
-  }, [currentUser]);
+    if (currentUser && props.isOpen) {
+      setName(currentUser.name);
+      setAbout(currentUser.about);
+    }
+  }, [currentUser, props.isOpen]);
 
   const handleSubmit = () => {
     props.onUpdateUser({
